@@ -634,6 +634,15 @@ html:not(.plainbg) body{background:radial-gradient(900px 520px at 50% -12%, colo
 @media (min-width:700px){.hgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:1300px){.hgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .ht b,.ht small{overflow-wrap:anywhere}
+
+.pct{display:flex;align-items:center;gap:12px;background:var(--surface);border-radius:14px;padding:10px 12px;margin:10px 0;text-align:left}
+.pctn{display:flex;flex-direction:column;align-items:center;flex:none;min-width:86px}
+.pctn b{font:700 2rem/1 var(--display);color:var(--brand-amber)}
+.pctn span{font-size:.72rem;font-weight:800;margin-top:4px;white-space:nowrap}
+.pctparts{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.pctparts span{display:flex;justify-content:space-between;gap:8px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.pctparts em{font-style:normal;color:var(--fg);font-weight:800}
+.pctparts em.neg{color:#e0645a}
 </style>
 
 </head>
@@ -946,7 +955,7 @@ for (const w of new Set(POOL)){ const n = [...w].length; (BYLEN[n] = BYLEN[n] ||
 const LENGTHS = [4,5,6,7,8];
 const ROWS = 6;
 const DUO_ROWS = 7;
-const NEWS_VER = 10;
+const NEWS_VER = 11;
 const CUTOVER = '2026-11-01';
 // Número de WhatsApp para recibir reportes (con lada, sin + ni espacios). Vacío = el jugador elige el contacto.
 const REPORT_WA = '';
@@ -2937,6 +2946,7 @@ function press(k){
   if (PANE[mode]) return PANE[mode].press(k);
   if (mode === 'cross') return crossPress(k);
   if (!game || game.over || busy) return;
+  wordClock();
   if (tuto && tuto.wait) return toast('Toca «Siguiente» para continuar');
   if (k === 'Enter') return submit();
   if (k === 'ArrowLeft'){ cursor = Math.max(0, cursor - 1); return draw() }
@@ -3200,6 +3210,7 @@ function showResult(){
     <div class="answer">${[...showWord(game.answer)].map(c => `<b>${c.toUpperCase()}</b>`).join('')}</div>
     ${sayBtn(game.answer)}
     ${defHTML(game.answer)}
+    ${PCT_MODES.includes(mode) ? pctHTML(pctWord(game)) : ''}
     <div id="rwBox" class="rwbox"></div>
     ${next.replace('class="secondary" id="nextArch"', 'class="primary" id="nextArch"').replace('class="secondary" id="againCat"', 'class="primary" id="againCat"').replace('class="secondary" id="makeRetoBtn"', 'class="primary" id="makeRetoBtn"')}
     <div class="btnrow2"><button class="secondary" id="shareBtn">📤 Compartir</button><button class="secondary" id="imgBtn">🖼️ Imagen</button></div>
@@ -3229,11 +3240,44 @@ function tickCountdown(){
   };
   upd(); cdTimer = setInterval(upd, 1000);
 }
+// ===== Calificación en porcentaje de cada partida =====
+const PCT_MODES = ['daily', 'arch', 'reto', 'free', 'cat'];
+const WORD_BASE = [100, 95, 85, 72, 58, 45];
+function wordClock(){ // tiempo activo: suma los ratos entre teclas (cada rato cuenta máximo 1 minuto)
+  if (!game || game.over || !PCT_MODES.includes(mode)) return;
+  const now = Date.now(); if (game.lastIn) game.ms = (game.ms || 0) + Math.min(now - game.lastIn, 60000); game.lastIn = now;
+}
+function pctWord(g){
+  if (!g || !g.over) return null;
+  if (!g.won) return { pct: 0, parts: [['No la adivinaste', 0]] };
+  const n = g.guesses.length, base = WORD_BASE[n - 1] != null ? WORD_BASE[n - 1] : 40;
+  const hints = (g.hint ? 1 : 0) + (g.hint2 ? 1 : 0), secs = Math.round((g.ms || 0) / 1000), tp = Math.min(10, Math.max(0, Math.floor((secs - 120) / 30)));
+  const parts = [[`${n} ${n === 1 ? 'intento' : 'intentos'}`, base]];
+  if (hints) parts.push([hints === 1 ? 'Pista' : `${hints} pistas`, -10 * hints]);
+  parts.push([`Tiempo ${mmss(g.ms || 0)}`, -tp]);
+  return { pct: Math.max(10, base - hints * 10 - tp), parts };
+}
+function pctTime(t, par){ const r = t / par; return r <= 1 ? 100 : r <= 3 ? 100 - 25 * (r - 1) : Math.max(30, 50 - 10 * (r - 3)) }
+function pctTimed(t, par, pen, penLabel){
+  const ts = Math.round(pctTime(t, par));
+  const parts = [[`Tiempo ${mmss(t)} (meta ${mmss(par)})`, ts]];
+  if (pen) parts.push([penLabel, -pen]);
+  return { pct: Math.max(10, Math.round(ts - pen)), parts };
+}
+function pctCross(x){ const n = x.layout.words.length, pen = x.pen != null ? x.pen : (x.hints || 0) * 5; return pctTimed(x.elapsed, n * 30000, pen, x.hints === 1 ? '1 ayuda' : `${x.hints} ayudas`) }
+function pctSoup(p){ const n = p.data.words.length; return pctTimed(p.elapsed, n * 20000, (p.hints || 0) * 8, p.hints === 1 ? '1 pista' : `${p.hints} pistas`) }
+function pctTier(v){ return v >= 95 ? ['🏆', 'Leyenda'] : v >= 85 ? ['⭐', 'Experto'] : v >= 70 ? ['👍', 'Muy bien'] : v >= 50 ? ['🙂', 'Bien'] : ['💪', 'Sigue practicando'] }
+function pctHTML(p){
+  if (!p) return '';
+  const [e, t] = pctTier(p.pct);
+  return `<div class="pct"><div class="pctn"><b>${p.pct} %</b><span>${e} ${t}</span></div><div class="pctparts">${p.parts.map(([l, v], i) => `<span>${l}<em class="${i && v < 0 ? 'neg' : ''}">${i ? (v < 0 ? '−' + Math.abs(v) : v === 0 ? '−0' : v) : v}</em></span>`).join('')}</div></div>`;
+}
 function shareText(){
   const [g, y, b] = settings.contrast ? ['🟧','🟦','⬛'] : ['🟩','🟨','⬛'];
   const d = new Date(), date = d.getDate() + '/' + (d.getMonth()+1);
   const label = mode === 'daily' ? date : mode === 'arch' ? `${+archDay.slice(8)}/${+archDay.slice(5,7)}` : mode === 'pass' ? '(duelo)' : mode === 'reto' ? '(tu reto)' : mode === 'cat' ? `(${CATS[cat.key]})` : '(libre)';
-  const head = `Palabra Secreta ${label} · ${COLS} letras ${game.won ? game.guesses.length : 'X'}/${ROWS}${settings.hard ? '*' : ''}${game.hint ? ' (con pista)' : ''}`;
+  const pw = PCT_MODES.includes(mode) ? pctWord(game) : null;
+  const head = `Palabra Secreta ${label} · ${COLS} letras ${game.won ? game.guesses.length : 'X'}/${ROWS}${settings.hard ? '*' : ''}${game.hint ? ' (con pista)' : ''}${pw ? `\n🎯 ${pw.pct} % ${pctTier(pw.pct).join(' ')}` : ''}`;
   const grid = game.guesses.map(w => score(w, game.answer).map(r => r === 'correct' ? g : r === 'present' ? y : b).join('')).join('\n');
   return head + '\n\n' + grid;
 }
@@ -3508,13 +3552,11 @@ function showHelp(p, locked, onDone){
 function showNews(after){
   store.set('ps-news', NEWS_VER);
   showModal(`<h2>Novedades</h2>
-    <p class="sub">Versión estable: revisamos todo el juego y corregimos detalles.</p>
     <div class="legend">
-      <span><i class="ico">◀️</i>El botón «atrás» del teléfono cierra ventanas y regresa al inicio en lugar de salir</span>
-      <span><i class="ico">⚡</i>Crucigramas más rápidos en teléfonos sencillos</span>
-      <span><i class="ico">📱</i>Mejor en pantallas chicas: todo cabe y Doble palabra se acomoda arriba y abajo</span>
-      <span><i class="ico">🛡️</i>El juego ya no falla si se dañan datos guardados</span>
-      <span><i class="ico">🌙</i>A medianoche las palabras del día se actualizan solas</span>
+      <span><i class="ico">🎯</i>Ahora cada partida tiene una calificación del 0 al 100 %</span>
+      <span><i class="ico">🟩</i>Palabras: cuenta los intentos, las pistas y el tiempo</span>
+      <span><i class="ico">🧩</i>Crucigrama y sopa: cuenta tu tiempo contra un tiempo meta y las ayudas</span>
+      <span><i class="ico">📤</i>Comparte tu porcentaje y compáralo con tus amigos: gana quien tenga más</span>
     </div>
     <p class="sub">Todo está en el Inicio 🏠.</p>
     <button class="primary" id="nOk">¡Genial!</button>`, () => { $('nOk').onclick = () => { closeModal(); if (after) after() } });
@@ -3982,7 +4024,8 @@ function shareImage(){
     x.fillStyle = col[st]; roundRect(x, ox + i * (size + gap), oy + r * (size + gap), size, size, 12); x.fill();
   }));
   const st = mode === 'daily' || mode === 'free' ? getStats() : null, lv = levelOf(xpState().xp).level;
-  const chips = [st ? `🔥 Racha ${st.streak}` : null, `⭐ Nivel ${lv}`, st && st.played ? `✅ ${Math.round(st.wins / st.played * 100)}%` : null].filter(Boolean);
+  const pw = PCT_MODES.includes(mode) ? pctWord(game) : null;
+  const chips = [pw ? `🎯 ${pw.pct} %` : null, st ? `🔥 Racha ${st.streak}` : null, `⭐ Nivel ${lv}`, st && st.played ? `✅ ${Math.round(st.wins / st.played * 100)}%` : null].filter(Boolean);
   x.font = '800 22px Nunito, sans-serif';
   const cw = chips.map(t => x.measureText(t).width + 36), total = cw.reduce((a, b) => a + b, 0) + (chips.length - 1) * 12;
   let cx = (W - total) / 2; const cy = oy + rows * (size + gap) + 34;
@@ -4108,8 +4151,8 @@ function xNow(){ return cross ? cross.elapsed + (cross.t0 && !cross.done ? Date.
 function xPause(){ if (cross && cross.t0){ cross.elapsed += Date.now() - cross.t0; cross.t0 = Date.now() } }
 function xSave(){
   if (!cross) return; xPause();
-  const { kind, cat, size, lens, giant, hard, layout, fill, rev, elapsed, hints, done } = cross;
-  store.set(cross.key, { kind, cat, size, lens, giant, hard, layout, fill, rev, elapsed, hints, done });
+  const { kind, cat, size, lens, giant, hard, layout, fill, rev, elapsed, hints, pen, done } = cross;
+  store.set(cross.key, { kind, cat, size, lens, giant, hard, layout, fill, rev, elapsed, hints, pen, done });
 }
 function xTick(){ const el = $('xTime'); if (el && cross) el.textContent = mmss(xNow()) }
 function openCross(){
@@ -4274,11 +4317,11 @@ function crossHelp(){
     <button class="secondary" id="closeBtn">Cancelar</button>`, () => {
     const ks = () => xKeys(cross.layout.words[cross.sel.w]);
     const pay = c => !c || spend(c);
-    const reveal = (list, c) => { if (!pay(c)) return; list.forEach(k => { cross.fill[k] = cross.cells[k].ch; cross.rev[k] = true }); cross.hints++; closeModal(); xSave(); crossRender(); if (!xCheckDone() && xDoneW(cross.sel.w)) xJump(1) };
-    $('xhL').onclick = () => reveal([ks()[cross.sel.k]], cost.L);
-    $('xhW').onclick = () => reveal(ks(), cost.W);
+    const reveal = (list, c, pn) => { if (!pay(c)) return; list.forEach(k => { cross.fill[k] = cross.cells[k].ch; cross.rev[k] = true }); cross.hints++; cross.pen = (cross.pen || 0) + pn; closeModal(); xSave(); crossRender(); if (!xCheckDone() && xDoneW(cross.sel.w)) xJump(1) };
+    $('xhL').onclick = () => reveal([ks()[cross.sel.k]], cost.L, 3);
+    $('xhW').onclick = () => reveal(ks(), cost.W, 8);
     $('xhC').onclick = () => {
-      if (!pay(cost.C)) return;
+      if (!pay(cost.C)) return; cross.pen = (cross.pen || 0) + 5;
       cross.bad = {}; let n = 0;
       Object.keys(cross.fill).forEach(k => { if (cross.fill[k] !== cross.cells[k].ch){ cross.bad[k] = 1; n++ } });
       cross.hints++; closeModal(); xSave(); crossRender();
@@ -4304,12 +4347,13 @@ function showCrossResult(){
   const helps = cross.hints ? `${cross.hints} ${cross.hints === 1 ? 'ayuda' : 'ayudas'}` : 'sin ayudas';
   showModal(`<p class="sub">${xLabel()}</p><h2>¡Crucigrama resuelto!</h2>
     <p>Lo terminaste en</p><div class="code">${t}</div>
+    ${pctHTML(pctCross(cross))}
     <p class="sub">${n} palabras · ${helps}${cross.record ? ' · ¡Nuevo récord!' : best ? ` · Tu récord ${cross.kind === 'daily' ? (cross.giant ? 'en gigantes' : 'del día') : 'en ' + (XSIZE[cross.size] ? XSIZE[cross.size].label : 'Normal')}: ${mmss(best)}` : ''}</p>
     <p class="sub">Toca una palabra para escucharla</p><div class="xwords">${cross.layout.words.map(p => `<span data-say="${p.w}">${showWord(p.w).toUpperCase()}</span>`).join('')}</div>
     <button class="primary" id="xShare">Compartir resultado</button>
     ${daily ? '<p class="sub">Mañana habrá un crucigrama del día nuevo</p><button class="secondary" id="xFree">Jugar uno libre</button>' : '<button class="secondary" id="xAgain">Otro crucigrama</button>'}
     <button class="secondary" id="leaveBtn">Volver al juego normal</button>`, () => {
-    $('xShare').onclick = () => shareOrCopy(`Palabra Secreta · ${xLabel()}\n🧩 Resuelto en ${t} · ${n} palabras${cross.hard ? ' · Difícil' : ''} · ${helps}\n¿Me ganas?`, 'Resultado copiado. Pégalo en WhatsApp.');
+    $('xShare').onclick = () => shareOrCopy(`Palabra Secreta · ${xLabel()}\n🎯 ${pctCross(cross).pct} % ${pctTier(pctCross(cross).pct).join(' ')}\n🧩 Resuelto en ${t} · ${n} palabras${cross.hard ? ' · Difícil' : ''} · ${helps}\n¿Me ganas?`, 'Resultado copiado. Pégalo en WhatsApp.');
     if ($('xFree')) $('xFree').onclick = () => startCross('free', null, true);
     if ($('xAgain')) $('xAgain').onclick = () => startCross(cross.kind === 'friend' ? 'free' : cross.kind, cross.cat, true);
     $('leaveBtn').onclick = () => { closeModal(); goNormal() };
@@ -4699,13 +4743,14 @@ function soupResult(){
   const helps = pane.hints ? `${pane.hints} ${pane.hints === 1 ? 'ayuda' : 'ayudas'}` : 'sin ayudas';
   showModal(`<p class="sub">${soupLabel()}</p><h2>¡Encontraste todas!</h2>
     <p>Tu tiempo</p><div class="code">${t}</div>
+    ${pctHTML(pctSoup(pane))}
     <p class="sub">${n} palabras · ${helps}${pane.record ? ' · ¡Nuevo récord!' : best ? ` · Tu récord ${pane.kind === 'daily' ? 'del día' : 'en ' + (SOUP_DIFF[pane.diff] || SOUP_DIFF.normal).label}: ${mmss(best)}` : ''}</p>
     <p class="sub">Toca una palabra para escucharla</p>
     <div class="xwords">${pane.data.words.map(p => `<span data-say="${p.w}">${showWord(p.w).toUpperCase()}</span>`).join('')}</div>
     <button class="primary" id="pShare">Compartir resultado</button>
     <button class="secondary" id="pAgain">${pane.kind === 'daily' ? 'Jugar una sopa libre' : 'Otra sopa de letras'}</button>
     <button class="secondary" id="leaveBtn">Volver al juego normal</button>`, () => {
-    $('pShare').onclick = () => shareOrCopy(`Palabra Secreta · ${soupLabel()}\n🔎 Encontré ${n} palabras en ${t}${pane.kind !== 'daily' && pane.diff !== 'normal' && SOUP_DIFF[pane.diff] ? ' · ' + SOUP_DIFF[pane.diff].label : ''} · ${helps}\n¿Me ganas?`, 'Resultado copiado. Pégalo en WhatsApp.');
+    $('pShare').onclick = () => shareOrCopy(`Palabra Secreta · ${soupLabel()}\n🎯 ${pctSoup(pane).pct} % ${pctTier(pctSoup(pane).pct).join(' ')}\n🔎 Encontré ${n} palabras en ${t}${pane.kind !== 'daily' && pane.diff !== 'normal' && SOUP_DIFF[pane.diff] ? ' · ' + SOUP_DIFF[pane.diff].label : ''} · ${helps}\n¿Me ganas?`, 'Resultado copiado. Pégalo en WhatsApp.');
     $('pAgain').onclick = () => startSoup(pane.kind === 'daily' || pane.kind === 'friend' ? 'free' : pane.kind, pane.cat, true);
     $('leaveBtn').onclick = () => { closeModal(); goNormal() };
   });
@@ -5858,8 +5903,8 @@ function homeHTML(){
     <section class="hsec"><h3>Hoy</h3>
       <button class="hday" data-go="daily">${ico('daily')}<div><b>Palabras del día</b><small>${doneN === 5 ? '¡Completaste las 5!' : `${doneN} de 5 jugadas`}</small><div class="hdots">${LENGTHS.map((n, i) => `<i class="${dp[i]}">${n}</i>`).join('')}</div></div><em>${doneN === 5 ? 'Ver' : doneN ? 'Seguir' : 'Jugar'}</em></button>
       <div class="hrow2">
-        <button class="hmini" data-go="xdaily">${ico('cross')}<span class="ht"><b>Crucigrama${weekend ? ' gigante' : ''}</b><small>${xd && xd.done ? 'Resuelto en ' + mmss(xd.elapsed) + ' ✓' : xd ? 'Continuar' : 'Del día'}</small></span></button>
-        <button class="hmini" data-go="sdaily">${ico('soup')}<span class="ht"><b>Sopa de letras</b><small>${sd && sd.done ? 'Resuelta en ' + mmss(sd.elapsed) + ' ✓' : sd ? 'Continuar' : 'Del día'}</small></span></button>
+        <button class="hmini" data-go="xdaily">${ico('cross')}<span class="ht"><b>Crucigrama${weekend ? ' gigante' : ''}</b><small>${xd && xd.done ? mmss(xd.elapsed) + ' · ' + pctCross(xd).pct + ' % ✓' : xd ? 'Continuar' : 'Del día'}</small></span></button>
+        <button class="hmini" data-go="sdaily">${ico('soup')}<span class="ht"><b>Sopa de letras</b><small>${sd && sd.done ? mmss(sd.elapsed) + ' · ' + pctSoup(sd).pct + ' % ✓' : sd ? 'Continuar' : 'Del día'}</small></span></button>
       </div>
     </section>
     <section class="hsec"><h3>Reto semanal <button class="hlink" data-go="weekly">Ver todo</button></h3>
