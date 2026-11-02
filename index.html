@@ -524,6 +524,116 @@ a.toast-btn{display:inline-block;text-decoration:none}
 }
 .slist.clues .schip{font-size:.72rem}
 .pick-len.row4 small{font-size:.62rem}
+
+:root:not(.is-light){--key-absent-fg:#8d9097}
+.key.absent{opacity:1;text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:color-mix(in srgb, currentColor 70%, transparent)}
+.key{transition:transform .08s ease}
+.key:active{transform:scale(.9)}
+.tile.win{box-shadow:0 0 0 2px color-mix(in srgb, var(--green) 60%, transparent),0 6px 18px color-mix(in srgb, var(--green) 45%, transparent)}
+.tries{display:flex;align-items:center;justify-content:center;gap:10px;padding:2px 0 6px;color:var(--muted);font-size:.72rem;font-weight:800}
+.tries span{display:flex;gap:5px}
+.tries i{width:8px;height:8px;border-radius:50%;background:var(--surface-2);opacity:.7}
+.tries i.used{background:var(--brand-amber);opacity:1}
+.tries i.now{background:transparent;box-shadow:inset 0 0 0 2px var(--brand-amber);opacity:1}
+.rwbox:empty{display:none}
+.rwbox{background:var(--surface);border-radius:12px;padding:10px 12px;margin:10px 0;text-align:left}
+.rwbox .rw{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-weight:800}
+.rwbox .rw b{color:var(--brand-amber);font-family:var(--display);font-size:1.1rem}
+.rwbox .rw span{font-size:.85rem}
+.rwbox .wbar{margin:7px 0 5px}.rwbox .wbar i{transition:width 1s cubic-bezier(.2,.8,.2,1);background:var(--brand-amber)}
+.rwbox small{color:var(--muted);font-size:.75rem;font-weight:700}
+.btnrow2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btnrow2 .secondary{margin-top:8px}
+.stdet{margin-top:10px;text-align:left}
+.stdet summary{cursor:pointer;font-weight:800;color:var(--muted);padding:8px 2px;list-style:none;text-align:center}
+.stdet summary::-webkit-details-marker{display:none}
+.stdet[open] summary{color:var(--fg)}
+.cdbig{margin:10px 0;font-weight:800;color:var(--fg)!important}
+.cdbig b{font-family:var(--display);font-size:1.3rem;color:var(--brand-amber)}
+
+.hi{display:flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;border-radius:11px;font-size:1.3rem;color:var(--c,var(--brand-amber));background:var(--surface);background:color-mix(in srgb, var(--c,var(--brand-amber)) 18%, transparent)}
+.is-light .hi{background:color-mix(in srgb, var(--c,var(--brand-amber)) 14%, #fff)}
+.hcard{flex-direction:row;align-items:center;gap:10px;min-height:0;padding:10px}
+.hmini{flex-direction:row;align-items:center;gap:10px}
+.ht{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ht b{font-size:.9rem;line-height:1.2}
+.ht small{color:var(--muted);font-size:.74rem;font-weight:700;line-height:1.25}
+.hday .hi{width:46px;height:46px}
+.hfold>summary{list-style:none;cursor:pointer}
+.hfold>summary::-webkit-details-marker{display:none}
+.hfold>summary h3{margin-bottom:0;padding:4px 0}
+.hfold[open]>summary h3{margin-bottom:8px}
+.chev{width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
+.hfold[open] .chev{transform:rotate(225deg) translate(-2px,-2px)}
+@media (min-width:900px){.hcard{padding:14px 12px}.hi{width:44px;height:44px}}
+
+/* temas nuevos */
+.theme-muertos{--bg:#1a0f24;--surface:#33203f;--surface-2:#4d335c;--absent:#22142e;--card:#261833;--muted:#c3a9d1;--brand-amber:#ff9f1c}
+.theme-navidad{--bg:#0d1f17;--surface:#1d3a2c;--surface-2:#2f5743;--absent:#132a20;--card:#173126;--muted:#a9cbb8;--brand-amber:#ef5a4f}
+/* fondo con brillo suave */
+html:not(.plainbg) body{background:radial-gradient(900px 520px at 50% -12%, color-mix(in srgb, var(--brand-amber) 10%, transparent), transparent 70%),radial-gradient(800px 520px at 105% 110%, color-mix(in srgb, var(--brand-green) 10%, transparent), transparent 70%),var(--bg);background-attachment:fixed}
+/* pestañas de ajustes */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--surface);border-radius:12px;padding:4px;margin:8px 0 12px;position:sticky;top:-22px;z-index:2}
+.tabs button{border:0;background:none;color:var(--muted);font:800 .8rem var(--body);padding:9px 2px;border-radius:9px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--card);color:var(--fg);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.tprev{background:var(--bg);border-radius:14px;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:inset 0 0 0 1px var(--surface)}
+.tp-row{display:flex;gap:5px}
+.tp-row i{width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font:700 1.1rem var(--display);font-style:normal;color:#fff}
+.square .tp-row i{border-radius:0}
+.tp-row .c,.tp-kb .c{background:var(--green);color:#fff}.tp-row .p,.tp-kb .p{background:var(--amber);color:#fff}
+.tp-row .a{background:var(--absent);color:var(--absent-fg)}.tp-row .e{box-shadow:inset 0 0 0 2px var(--surface-2);color:var(--fg)}
+.tp-kb{display:flex;gap:4px}
+.tp-kb b{width:24px;height:30px;border-radius:5px;background:var(--surface-2);color:var(--fg);display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.tp-kb .a{background:var(--absent);color:var(--key-absent-fg);text-decoration:line-through}
+.tprev small{color:var(--muted);font-weight:700;font-size:.72rem}
+/* ventanas como hoja en teléfono */
+@keyframes sheetUp{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+@media (max-width:600px){
+  .overlay{align-items:flex-end;padding:0}
+  .card{max-width:none;border-radius:22px 22px 0 0;max-height:92vh;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));animation:sheetUp .22s ease-out;transition:transform .2s ease}
+  .card::before{content:"";display:block;width:42px;height:5px;border-radius:3px;background:var(--surface-2);margin:-10px auto 12px}
+}
+@media (prefers-reduced-motion:reduce){.card{animation:none}}
+/* teléfono en horizontal: tablero a la izquierda, teclado a la derecha */
+@media (orientation:landscape) and (max-height:520px) and (max-width:1000px){
+  .app{max-width:none;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+  main.game{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto auto minmax(0,1fr) auto;column-gap:18px}
+  main.game>header{grid-column:1/-1;grid-row:1;padding-bottom:4px}
+  main.game>.bar{grid-column:2;grid-row:2;flex-wrap:wrap;gap:6px;padding:4px 0}
+  main.game>#modeLine{grid-column:2;grid-row:3}
+  main.game>#coach{grid-column:2;grid-row:4}
+  main.game>#hintLine{grid-column:2;grid-row:4}
+  main.game>#wrap{grid-column:1;grid-row:2/7;padding:4px 0}
+  main.game>#tries{grid-column:2;grid-row:5;align-self:end}
+  main.game>#clueBar{grid-column:2;grid-row:5;align-self:end}
+  main.game>#kb{grid-column:2;grid-row:6}
+  main.game.nokb>#wrap{grid-column:1/-1;grid-row:3/7}
+  main.game.nokb>#modeLine{grid-column:1/-1;grid-row:2}
+  .key{height:40px}
+  .side{display:none!important}
+  .body{gap:0}
+}
+
+.board.duo.stack{flex-direction:column;gap:10px;align-items:center}
+@media (max-width:360px){
+  h1{font-size:1.12rem}
+  header .tools{gap:4px}
+  .icon-btn{height:34px;min-width:34px;padding:0 7px}
+  header{gap:6px}
+  .reto-line{font-size:.78rem;gap:4px}
+  .reto-line button{padding:4px 8px;min-height:30px;font-size:.74rem}
+  .mln{display:none}
+  .hday{gap:8px;padding:12px}
+  .hday em{padding:8px 10px}
+  .hdots i{width:20px}
+  .hday .hi{width:38px;height:38px}
+}
+.mls{display:none}
+@media (max-width:360px){.mls{display:inline}}
+.hgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:700px){.hgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1300px){.hgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ht b,.ht small{overflow-wrap:anywhere}
 </style>
 
 </head>
@@ -548,6 +658,7 @@ a.toast-btn{display:inline-block;text-decoration:none}
   <div class="coach" id="coach" hidden></div>
   <div class="hint-line" id="hintLine" hidden></div>
   <div class="board-wrap" id="wrap"><div class="board" id="board"></div><div class="xgrid" id="xgrid" hidden></div><div class="pane" id="pane" hidden></div></div>
+  <div class="tries" id="tries" hidden aria-live="off"></div>
   <div class="clue-bar" id="clueBar" hidden><button id="cbPrev" aria-label="Pista anterior">‹</button><div class="ct" id="cbText"></div><button id="cbNext" aria-label="Pista siguiente">›</button></div>
   <div class="kb" id="kb"></div>
   </main><aside class="side" id="side" aria-label="Panel de juego"></aside></div>
@@ -835,14 +946,14 @@ for (const w of new Set(POOL)){ const n = [...w].length; (BYLEN[n] = BYLEN[n] ||
 const LENGTHS = [4,5,6,7,8];
 const ROWS = 6;
 const DUO_ROWS = 7;
-const NEWS_VER = 8;
+const NEWS_VER = 10;
 const CUTOVER = '2026-11-01';
 // Número de WhatsApp para recibir reportes (con lada, sin + ni espacios). Vacío = el jugador elige el contacto.
 const REPORT_WA = '';
 const $ = id => document.getElementById(id);
 const board = $('board'), kb = $('kb'), wrap = $('wrap');
 const store = {
-  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d }catch(e){ return d } },
+  get(k, d){ try{ const v = localStorage.getItem(k); if (!v) return d; const p = JSON.parse(v); if (p == null) return d; if (d != null && typeof d === 'object' && (typeof p !== 'object' || Array.isArray(p) !== Array.isArray(d))) return d; if (typeof d === 'number' && typeof p !== 'number') return d; return p }catch(e){ return d } },
   set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)) }catch(e){} }
 };
 function norm(s){ return s.toLowerCase().replace(/ñ/g,'\u0001').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\u0001/g,'ñ') }
@@ -2751,7 +2862,7 @@ function sizeBoard(){
   if (mode === 'cross') return crossSize();
   const gap = COLS >= 7 ? 5 : 6;
   const w = wrap.clientWidth, h = wrap.clientHeight - 20;
-  const size = Math.max(28, Math.floor(Math.min((w - gap*(COLS-1)) / COLS, (h - gap*(ROWS-1)) / ROWS, innerWidth >= 900 ? 120 : 66)));
+  const size = Math.max(28, Math.floor(Math.min((w - gap*(COLS-1)) / COLS, (h - gap*(ROWS-1)) / ROWS, innerWidth >= 900 ? 92 : 66)));
   board.style.setProperty('--tile', size + 'px'); board.style.setProperty('--gap', gap + 'px');
 }
 window.addEventListener('resize', sizeBoard);
@@ -2857,11 +2968,19 @@ function ghostLetters(){
   if (game.hint2) g[game.hint2.pos] = game.hint2.letter;
   return g;
 }
+function drawTries(){
+  const el = $('tries'); if (!el) return;
+  const on = !PANE[mode] && !['cross', 'duo', 'tuto'].includes(mode) && game && game.answer && !game.over;
+  el.hidden = !on; if (!on) return;
+  const n = game.guesses.length;
+  el.innerHTML = `<span>${Array.from({ length: ROWS }, (_, i) => `<i class="${i < n ? 'used' : i === n ? 'now' : ''}"></i>`).join('')}</span><small>Intento ${Math.min(n + 1, ROWS)} de ${ROWS}</small>`;
+}
 function draw(){
+  drawTries();
   if (PANE[mode]) return;
   if (mode === 'duo') return duoDraw();
   const row = board.children[game.guesses.length]; if (!row || game.over) return;
-  const gh = ghostLetters();
+  const gh = game.guesses.length >= ROWS ? [] : ghostLetters();
   [...row.children].forEach((t,i) => {
     t.classList.toggle('cursor', i === cursor && !busy);
     t.textContent = slots[i] || gh[i] || '';
@@ -2919,11 +3038,12 @@ function submit(){
     setTimeout(() => { t.classList.remove('filled'); t.classList.add(res[i]) }, 200);
   }, i * step));
   setTimeout(() => {
-    paintKeys(guess, res); busy = false; draw(); announce(guess, res); if (mode === 'pass') saveSession();
-    const won = guess === game.answer;
+    const won = guess === game.answer, ends = won || game.guesses.length === ROWS;
+    paintKeys(guess, res); busy = false; if (!ends) draw(); announce(guess, res); if (mode === 'pass') saveSession();
     if (won) [...row.children].forEach((t,i) => setTimeout(() => t.classList.add('win'), i * 90));
     if (won) finish(true); else if (game.guesses.length === ROWS) finish(false);
     else if (tuto) tutoAfterGuess();
+    drawTries();
   }, COLS * step + 300);
 }
 const rank = { absent:1, present:2, correct:3 };
@@ -3071,8 +3191,8 @@ function showResult(){
   else if (mode === 'cat') next = `<button class="secondary" id="againCat">Otra de ${CATS[cat.key]}</button><button class="secondary" id="leaveBtn">Volver al juego normal</button>`;
   else if (mode === 'daily'){
     const pending = LENGTHS.filter(n => { const g = store.get(`ps-daily-${todayKey()}-${n}`, null); return !(g && g.over) });
-    next = `${pending.length ? `<button class="secondary" id="nextDaily">Jugar la del día de ${pending[0]} letras</button>` : ''}<p class="sub">Nuevas palabras del día en <b id="countdown"></b></p><button class="secondary" id="toFree">Seguir en modo Libre</button>`;
-  } else next = `<button class="secondary" id="againBtn">${settings.randomLen ? 'Jugar otra (largo al azar)' : 'Jugar otra'}</button>`;
+    next = `${pending.length ? `<button class="primary" id="nextDaily">Jugar la del día de ${pending[0]} letras</button>` : '<p class="cdbig">Nuevas palabras en <b id="countdown"></b></p>'}<button class="secondary" id="toFree">Seguir en modo Libre</button>${pending.length ? '<p class="sub">Nuevas palabras del día en <b id="countdown"></b></p>' : ''}`;
+  } else next = `<button class="primary" id="againBtn">${settings.randomLen ? 'Jugar otra (largo al azar)' : 'Jugar otra'}</button>`;
   showModal(`
     ${mode === 'arch' ? `<p class="sub">Archivo · ${fmtDay(archDay)}</p>` : mode === 'reto' ? '<p class="sub">Reto de un amigo</p>' : mode === 'cat' ? `<p class="sub">Categoría: ${CATS[cat.key]}</p>` : ''}
     <h2>${game.won ? praise[game.guesses.length-1] : 'Se acabaron los intentos'}</h2>
@@ -3080,10 +3200,11 @@ function showResult(){
     <div class="answer">${[...showWord(game.answer)].map(c => `<b>${c.toUpperCase()}</b>`).join('')}</div>
     ${sayBtn(game.answer)}
     ${defHTML(game.answer)}
-    ${mode === 'daily' || mode === 'free' ? statsHTML() : ''}
-    <button class="primary" id="shareBtn">Compartir resultado</button>
-    <button class="secondary" id="imgBtn">Compartir como imagen</button>
-    ${next}`, () => {
+    <div id="rwBox" class="rwbox"></div>
+    ${next.replace('class="secondary" id="nextArch"', 'class="primary" id="nextArch"').replace('class="secondary" id="againCat"', 'class="primary" id="againCat"').replace('class="secondary" id="makeRetoBtn"', 'class="primary" id="makeRetoBtn"')}
+    <div class="btnrow2"><button class="secondary" id="shareBtn">📤 Compartir</button><button class="secondary" id="imgBtn">🖼️ Imagen</button></div>
+    ${mode === 'daily' || mode === 'free' ? `<details class="stdet"><summary>📊 Ver mis estadísticas</summary>${statsHTML()}</details>` : ''}`, () => {
+    showReward();
     $('shareBtn').onclick = share; $('imgBtn').onclick = shareImage;
     if ($('histBtn')) $('histBtn').onclick = openHistory;
     if ($('nextArch')) $('nextArch').onclick = () => { closeModal(); COLS = +$('nextArch').textContent.match(/\d/)[0]; load() };
@@ -3213,6 +3334,12 @@ function showModal(html, after, locked){ modalLocked = !!locked; $('modalCard').
   const c = $('closeBtn'); if (c) c.onclick = closeModal; if (after) after(); }
 function closeModal(){ $('modal').hidden = true; modalLocked = false; clearInterval(cdTimer) }
 $('modal').addEventListener('click', e => { if (e.target.id === 'modal' && !modalLocked) closeModal() });
+{ // deslizar hacia abajo para cerrar (teléfono)
+  const card = $('modalCard'); let y0 = null, dy = 0;
+  card.addEventListener('touchstart', e => { if (innerWidth > 600 || modalLocked || card.scrollTop > 0) return; y0 = e.touches[0].clientY; dy = 0 }, { passive: true });
+  card.addEventListener('touchmove', e => { if (y0 == null) return; dy = e.touches[0].clientY - y0; if (dy > 0){ card.style.transform = `translateY(${dy}px)`; card.style.transition = 'none' } }, { passive: true });
+  card.addEventListener('touchend', () => { if (y0 == null) return; card.style.transition = ''; card.style.transform = ''; if (dy > 110) closeModal(); y0 = null });
+}
 let toastT;
 function actionToast(msg, btns){
   const t = $('toast'); t.innerHTML = ''; t.append(msg + ' ');
@@ -3381,13 +3508,13 @@ function showHelp(p, locked, onDone){
 function showNews(after){
   store.set('ps-news', NEWS_VER);
   showModal(`<h2>Novedades</h2>
+    <p class="sub">Versión estable: revisamos todo el juego y corregimos detalles.</p>
     <div class="legend">
-      <span><i class="ico">🧩</i>Crucigramas nuevos: más cruces entre palabras, como los de periódico</span>
-      <span><i class="ico">🧠</i>Crucigrama Difícil de verdad: pistas ingeniosas, sin largo de palabra y ayudas con monedas</span>
-      <span><i class="ico">⌨️</i>En computadora el crucigrama usa tu teclado y se ve más grande</span>
-      <span><i class="ico">🧸</i>Modo niños: 400 dibujos, temas, sílabas, «¿Cuál es?» y un álbum de estampas</span>
-      <span><i class="ico">📖</i>545 palabras nuevas y 3 temas nuevos: colores y números, música y arte, ciencia y escuela</span>
-      <span><i class="ico">🔎</i>Sopa de letras más retadora: palabras al revés, trampas y nivel Experto con solo pistas</span>
+      <span><i class="ico">◀️</i>El botón «atrás» del teléfono cierra ventanas y regresa al inicio en lugar de salir</span>
+      <span><i class="ico">⚡</i>Crucigramas más rápidos en teléfonos sencillos</span>
+      <span><i class="ico">📱</i>Mejor en pantallas chicas: todo cabe y Doble palabra se acomoda arriba y abajo</span>
+      <span><i class="ico">🛡️</i>El juego ya no falla si se dañan datos guardados</span>
+      <span><i class="ico">🌙</i>A medianoche las palabras del día se actualizan solas</span>
     </div>
     <p class="sub">Todo está en el Inicio 🏠.</p>
     <button class="primary" id="nOk">¡Genial!</button>`, () => { $('nOk').onclick = () => { closeModal(); if (after) after() } });
@@ -3442,30 +3569,41 @@ function tutoDone(){
 }
 
 // ---------- ajustes ----------
+let settingsTab = 'perfil';
 $('settingsBtn').onclick = () => {
   if (blockedInTuto()) return;
   const row = (id, title, desc) => `<label class="opt" for="${id}"><span><b>${title}</b><small>${desc}</small></span><input type="checkbox" id="${id}" ${settings[id.slice(4)] ? 'checked' : ''}><i class="sw"></i></label>`;
+  const THEMES = [['dark','Oscuro','#0c0d10','#2e2f33','#45474d'],['light','Claro','#f2f3f6','#e1e3e9','#c5c9d2'],['purple','Morado','#150e22','#2c2240','#453860'],['blue','Azul','#0a1424','#1c2c44','#33476a'],['pink','Rosa','#1f0d18','#3a1b2e','#55304a'],['forest','Bosque','#0c1712','#1a2e24','#2e4a3b'],['sand','Arena','#f6efe3','#e8dcc7','#d3c2a5'],['muertos','Día de Muertos','#1a0f24','#33203f','#ff9f1c'],['navidad','Navidad','#0d1f17','#1d3a2c','#e8463c'],['custom','Personalizado',(settings.custom||CUSTOM_DEF).bg,(settings.custom||CUSTOM_DEF).tile,(settings.custom||CUSTOM_DEF).accent]];
+  const tab = settingsTab || 'perfil';
+  const pan = (id, body) => `<div class="stab" data-tab="${id}" ${tab === id ? '' : 'hidden'}>${body}</div>`;
   showModal(`<h2>Ajustes</h2>
-    <div class="opt-title">Tu perfil</div>
-    <div class="profile"><input class="field small" id="pfName" maxlength="16" placeholder="Tu nombre o apodo" value="${esc(settings.name || '')}" aria-label="Tu nombre"><div class="avatars">${AVATARS.map(a => `<button data-av="${a}" aria-pressed="${settings.avatar === a}" aria-label="Avatar ${a}">${a}</button>`).join('')}</div></div>
-    <p class="sub" style="text-align:left">Aparece al compartir tus resultados y en los duelos.</p>
-    <div class="opt-title">Juego</div>
-    ${row('opt-hard','Modo difícil','Debes usar las letras que ya descubriste')}
-    ${row('opt-sound','Sonidos','Efectos al escribir, acertar y perder')}
-    ${row('opt-vibrate','Vibración','Al acertar, perder o escribir mal')}
-    ${row('opt-big','Letra grande','Textos y teclado más grandes')}
-    ${row('opt-abc','Teclado alfabético','Letras en orden A, B, C… en lugar de QWERTY')}
-    ${row('opt-square','Fichas cuadradas','Esquinas rectas en lugar de redondeadas')}
-    ${row('opt-randomLen','Largo al azar','En modo Libre, cada partida nueva tiene de 4 a 8 letras')}
-    ${row('opt-ghosts','Letras descubiertas','Muestra en la fila las letras que ya tienes')}
-    ${row('opt-contrast','Alto contraste','Naranja = en su lugar, azul = en otro lugar')}
-    <div class="opt-title">Tema</div>
-    ${row('opt-auto','Tema automático','Claro u oscuro según tu teléfono o computadora')}
-    <div class="themes">${[['dark','Oscuro','#0c0d10','#2e2f33','#45474d'],['light','Claro','#f2f3f6','#e1e3e9','#c5c9d2'],['purple','Morado','#150e22','#2c2240','#453860'],['blue','Azul','#0a1424','#1c2c44','#33476a'],['pink','Rosa','#1f0d18','#3a1b2e','#55304a'],['forest','Bosque','#0c1712','#1a2e24','#2e4a3b'],['sand','Arena','#f6efe3','#e8dcc7','#d3c2a5'],['custom','Personalizado',(settings.custom||CUSTOM_DEF).bg,(settings.custom||CUSTOM_DEF).tile,(settings.custom||CUSTOM_DEF).accent]].map(([k,n,a,b,c]) =>
-      `<button data-theme-opt="${k}" aria-pressed="${settings.theme === k}" style="background:${b};color:${lum(b) > .5 ? '#17181c' : '#f5f5f2'}"><i><b style="background:${a}"></b><b style="background:${c}"></b><b style="background:#2f8a5c"></b><b style="background:#f2ab2a"></b></i>${n}</button>`).join('')}</div>
-    ${store.get('ps-custom', []).length ? `<div class="opt-title">Palabras que agregaste</div><p class="sub" style="text-align:left">${store.get('ps-custom', []).map(w => w.toUpperCase()).join(', ')}</p><button class="secondary" id="clearCustom">Borrar palabras agregadas</button>` : ''}
+    <div class="tabs" role="tablist">${[['perfil','Perfil'],['juego','Juego'],['look','Apariencia'],['datos','Datos']].map(([k, n]) => `<button role="tab" data-st2="${k}" aria-selected="${tab === k}">${n}</button>`).join('')}</div>
+    ${pan('perfil', `<div class="profile"><input class="field small" id="pfName" maxlength="16" placeholder="Tu nombre o apodo" value="${esc(settings.name || '')}" aria-label="Tu nombre"><div class="avatars">${AVATARS.map(a => `<button data-av="${a}" aria-pressed="${settings.avatar === a}" aria-label="Avatar ${a}">${a}</button>`).join('')}</div></div>
+      <p class="sub" style="text-align:left">Aparece en el inicio, al compartir tus resultados y en los duelos.</p>`)}
+    ${pan('juego', `${row('opt-hard','Modo difícil','Debes usar las letras que ya descubriste')}
+      ${row('opt-ghosts','Letras descubiertas','Muestra en la fila las letras que ya tienes')}
+      ${row('opt-randomLen','Largo al azar','En modo Libre, cada partida nueva tiene de 4 a 8 letras')}
+      ${row('opt-abc','Teclado alfabético','Letras en orden A, B, C… en lugar de QWERTY')}
+      ${row('opt-sound','Sonidos','Efectos al escribir, acertar y perder')}
+      ${row('opt-vibrate','Vibración','Al acertar, perder o escribir mal')}`)}
+    ${pan('look', `<div class="tprev" aria-hidden="true"><div class="tp-row"><i class="c">S</i><i class="p">O</i><i class="a">L</i><i class="e">E</i><i class="e">S</i></div><div class="tp-kb"><b>Q</b><b class="c">W</b><b class="a">E</b><b class="p">R</b><b>T</b><b class="a">U</b></div><small>Así se ve tu tablero</small></div>
+      ${row('opt-auto','Tema automático','Claro u oscuro según tu teléfono o computadora')}
+      <div class="themes">${THEMES.map(([k,n,a,b,c]) => `<button data-theme-opt="${k}" aria-pressed="${settings.theme === k}" style="background:${b};color:${lum(b) > .5 ? '#17181c' : '#f5f5f2'}"><i><b style="background:${a}"></b><b style="background:${c}"></b><b style="background:#2f8a5c"></b><b style="background:#f2ab2a"></b></i>${n}</button>`).join('')}</div>
+      ${row('opt-contrast','Colores para daltonismo','Naranja = en su lugar, azul = en otro lugar')}
+      ${row('opt-big','Letra grande','Textos y teclado más grandes')}
+      ${row('opt-square','Fichas cuadradas','Esquinas rectas en lugar de redondeadas')}
+      ${row('opt-plainbg','Fondo liso','Quita el brillo suave del fondo')}`)}
+    ${pan('datos', `<div class="menu"><button id="dBk">💾 Respaldo<small>Guarda o recupera todo tu progreso</small></button><button id="dWords">📖 Mis palabras<small>${Object.keys(store.get('ps-learned', {})).length} descubiertas · cópialas</small></button><button id="dStats">📊 Estadísticas<small>Todos tus números</small></button></div>
+      ${store.get('ps-custom', []).length ? `<div class="opt-title">Palabras que agregaste</div><p class="sub" style="text-align:left">${store.get('ps-custom', []).map(w => w.toUpperCase()).join(', ')}</p><button class="secondary" id="clearCustom">Borrar palabras agregadas</button>` : '<p class="sub">No has agregado palabras al diccionario.</p>'}`)}
     <button class="primary" id="closeBtn">Listo</button>`, () => {
     $('pfName').oninput = e => { settings.name = e.target.value.trim(); store.set('ps-settings', settings) };
+    document.querySelectorAll('[data-st2]').forEach(b => b.onclick = () => {
+      settingsTab = b.dataset.st2;
+      document.querySelectorAll('[data-st2]').forEach(x => x.setAttribute('aria-selected', x === b));
+      document.querySelectorAll('.stab').forEach(p => p.hidden = p.dataset.tab !== settingsTab);
+      $('modalCard').scrollTop = 0;
+    });
+    $('dBk').onclick = openBackup; $('dWords').onclick = () => openWords(); $('dStats').onclick = openStats;
     document.querySelectorAll('[data-av]').forEach(b => b.onclick = () => { settings.avatar = b.dataset.av; store.set('ps-settings', settings); document.querySelectorAll('[data-av]').forEach(x => x.setAttribute('aria-pressed', x === b)) });
     const cc = $('clearCustom'); if (cc) cc.onclick = () => { store.get('ps-custom', []).forEach(w => DICT.delete(w)); store.set('ps-custom', []); POOL.forEach(w => DICT.add(w)); ANS.forEach(a => DICT.add(a.w)); toast('Palabras agregadas borradas'); closeModal() };
     document.querySelectorAll('[data-theme-opt]').forEach(b => b.onclick = () => {
@@ -3474,7 +3612,7 @@ $('settingsBtn').onclick = () => {
       settings.theme = b.dataset.themeOpt; store.set('ps-settings', settings); applySettings();
       document.querySelectorAll('[data-theme-opt]').forEach(x => x.setAttribute('aria-pressed', x === b));
     });
-    ['hard','vibrate','contrast','ghosts','randomLen','sound','big','square','auto','abc'].forEach(k => $('opt-' + k).onchange = e => {
+    ['hard','vibrate','contrast','ghosts','randomLen','sound','big','square','auto','abc','plainbg'].forEach(k => $('opt-' + k).onchange = e => {
       if (k === 'hard' && e.target.checked && game.guesses.length && !game.over){ e.target.checked = false; return toast('Activa el modo difícil al empezar una partida') }
       settings[k] = e.target.checked; store.set('ps-settings', settings); applySettings(); draw();
       if (k === 'abc'){ buildKeyboard(); repaintKeys() }
@@ -3486,7 +3624,8 @@ $('settingsBtn').onclick = () => {
 function applySettings(){
   const r = document.documentElement, th = settings.auto ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') : settings.theme;
   r.classList.toggle('contrast', settings.contrast);
-  ['purple','blue','light','pink','forest','sand'].forEach(t => r.classList.toggle('theme-' + t, th === t));
+  ['purple','blue','light','pink','forest','sand','muertos','navidad'].forEach(t => r.classList.toggle('theme-' + t, th === t));
+  r.classList.toggle('plainbg', !!settings.plainbg);
   r.classList.toggle('big', !!settings.big);
   r.classList.toggle('square', !!settings.square);
   const VARS = ['--bg','--surface','--surface-2','--fg','--muted','--card','--absent','--absent-fg','--key-absent-fg','--green','--green-edge','--amber','--amber-edge','--brand-green','--brand-edge','--brand-amber','color-scheme'];
@@ -3505,7 +3644,7 @@ function applySettings(){
   }
   r.classList.toggle('is-light', light);
   const m = document.querySelector('meta[name="theme-color"]');
-  if (m) m.content = (th === 'custom' ? (settings.custom || CUSTOM_DEF).bg : { dark:'#0c0d10', light:'#f2f3f6', purple:'#150e22', blue:'#0a1424', pink:'#1f0d18', forest:'#0c1712', sand:'#f6efe3' }[th]) || '#0c0d10';
+  if (m) m.content = (th === 'custom' ? (settings.custom || CUSTOM_DEF).bg : { dark:'#0c0d10', light:'#f2f3f6', purple:'#150e22', blue:'#0a1424', pink:'#1f0d18', forest:'#0c1712', sand:'#f6efe3', muertos:'#1a0f24', navidad:'#0d1f17' }[th]) || '#0c0d10';
 }
 
 // ---------- cargar partidas ----------
@@ -3657,7 +3796,12 @@ function duoBuild(){
 }
 function duoSize(){
   const gap = 4, mid = 14, w = (wrap.clientWidth - mid) / 2, h = wrap.clientHeight - 16;
-  const size = Math.max(16, Math.floor(Math.min((w - gap*(COLS-1)) / COLS, (h - gap*(DUO_ROWS-1)) / DUO_ROWS, innerWidth >= 900 ? 90 : 48)));
+  const cap = innerWidth >= 900 ? 90 : 48;
+  const side = Math.floor(Math.min((w - gap*(COLS-1)) / COLS, (h - gap*(DUO_ROWS-1)) / DUO_ROWS, cap));
+  const stackH = (h - mid) / 2, stack = Math.floor(Math.min((wrap.clientWidth - gap*(COLS-1)) / COLS, (stackH - gap*(DUO_ROWS-1)) / DUO_ROWS, cap));
+  const useStack = side < 24 && stack > side;
+  board.classList.toggle('stack', useStack);
+  const size = Math.max(12, useStack ? stack : side);
   board.style.setProperty('--tile', size + 'px'); board.style.setProperty('--gap', gap + 'px');
 }
 const duoRow = (k, r) => board.children[k] && board.children[k].children[r];
@@ -3814,27 +3958,37 @@ function passAfter(){
 // ---------- compartir como imagen ----------
 function roundRect(x, a, b, w, h, r){ x.beginPath(); x.moveTo(a + r, b); x.arcTo(a + w, b, a + w, b + h, r); x.arcTo(a + w, b + h, a, b + h, r); x.arcTo(a, b + h, a, b, r); x.arcTo(a, b, a + w, b, r); x.closePath() }
 function shareImage(){
-  const cs = getComputedStyle(document.documentElement), v = n => cs.getPropertyValue(n).trim();
-  const size = 56, gap = 8, rows = game.guesses.length, W = 600;
-  const gridW = COLS * size + (COLS - 1) * gap, oy = 210, H = oy + rows * (size + gap) + 110;
+  const cs = getComputedStyle(document.documentElement), v = n => cs.getPropertyValue(n).trim() || '#888';
+  const size = COLS > 6 ? 54 : 62, gap = 9, rows = game.guesses.length, W = 720;
+  const gridW = COLS * size + (COLS - 1) * gap, oy = 300, H = oy + rows * (size + gap) + 200;
   const c = document.createElement('canvas'); c.width = W; c.height = H;
   const x = c.getContext('2d');
-  x.fillStyle = v('--bg'); x.fillRect(0, 0, W, H);
-  x.font = '700 44px Fredoka, Nunito, sans-serif'; x.textAlign = 'left';
+  const g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, v('--card')); g.addColorStop(1, v('--bg'));
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.globalAlpha = .18; x.fillStyle = v('--brand-amber'); x.beginPath(); x.arc(W - 40, 30, 170, 0, Math.PI * 2); x.fill();
+  x.fillStyle = v('--brand-green'); x.beginPath(); x.arc(30, H - 20, 150, 0, Math.PI * 2); x.fill(); x.globalAlpha = 1;
+  x.font = '700 46px Fredoka, Nunito, sans-serif'; x.textAlign = 'left';
   const t1 = 'Palabra ', t2 = 'Secreta', w1 = x.measureText(t1).width, w2 = x.measureText(t2).width, sx = (W - w1 - w2) / 2;
-  x.fillStyle = v('--fg'); x.fillText(t1, sx, 74); x.fillStyle = v('--brand-amber'); x.fillText(t2, sx + w1, 74);
+  x.fillStyle = v('--fg'); x.fillText(t1, sx, 78); x.fillStyle = v('--brand-amber'); x.fillText(t2, sx + w1, 78);
   const head = shareText().split('\n')[0].replace(/^Palabra Secreta\s*/, '').replace(/\s*\d+\/\d+.*$|\s*X\/\d+.*$/, '');
-  x.textAlign = 'center'; x.fillStyle = v('--muted'); x.font = '700 22px Nunito, sans-serif'; x.fillText(head, W / 2, 114);
-  x.fillStyle = v('--fg'); x.font = '700 56px Fredoka, Nunito, sans-serif';
-  x.fillText(`${game.won ? game.guesses.length : 'X'}/${ROWS}`, W / 2, 182);
+  x.textAlign = 'center'; x.fillStyle = v('--muted'); x.font = '700 24px Nunito, sans-serif'; x.fillText(head, W / 2, 118);
+  // jugador
+  const who = settings.name ? `${settings.avatar || '🙂'}  ${settings.name}` : (settings.avatar || '');
+  if (who){ x.font = '700 28px Nunito, sans-serif'; x.fillStyle = v('--fg'); x.fillText(who, W / 2, 166) }
+  x.font = '700 70px Fredoka, Nunito, sans-serif'; x.fillStyle = game.won ? v('--brand-amber') : v('--fg');
+  x.fillText(`${game.won ? game.guesses.length : 'X'}/${ROWS}`, W / 2, 252);
   const col = { correct: v('--green'), present: v('--amber'), absent: v('--absent') }, ox = (W - gridW) / 2;
-  game.guesses.forEach((w, r) => score(w, game.answer).forEach((s, i) => {
-    x.fillStyle = col[s]; roundRect(x, ox + i * (size + gap), oy + r * (size + gap), size, size, 10); x.fill();
+  game.guesses.forEach((w, r) => score(w, game.answer).forEach((st, i) => {
+    x.fillStyle = col[st]; roundRect(x, ox + i * (size + gap), oy + r * (size + gap), size, size, 12); x.fill();
   }));
-  const st = mode === 'daily' || mode === 'free' ? getStats() : null;
-  x.fillStyle = v('--muted'); x.font = '700 20px Nunito, sans-serif';
-  x.fillText(st ? `Racha: ${st.streak} · Ganadas: ${st.played ? Math.round(st.wins / st.played * 100) : 0}% · ¿Me superas?` : '¿Me superas?', W / 2, oy + rows * (size + gap) + 44);
-  if (settings.name){ x.fillStyle = v('--fg'); x.fillText(`${settings.avatar || ''} ${settings.name}`.trim(), W / 2, oy + rows * (size + gap) + 80) }
+  const st = mode === 'daily' || mode === 'free' ? getStats() : null, lv = levelOf(xpState().xp).level;
+  const chips = [st ? `🔥 Racha ${st.streak}` : null, `⭐ Nivel ${lv}`, st && st.played ? `✅ ${Math.round(st.wins / st.played * 100)}%` : null].filter(Boolean);
+  x.font = '800 22px Nunito, sans-serif';
+  const cw = chips.map(t => x.measureText(t).width + 36), total = cw.reduce((a, b) => a + b, 0) + (chips.length - 1) * 12;
+  let cx = (W - total) / 2; const cy = oy + rows * (size + gap) + 34;
+  chips.forEach((t, i) => { x.fillStyle = v('--surface'); roundRect(x, cx, cy, cw[i], 46, 23); x.fill(); x.fillStyle = v('--fg'); x.fillText(t, cx + cw[i] / 2, cy + 31); cx += cw[i] + 12 });
+  x.fillStyle = v('--muted'); x.font = '700 22px Nunito, sans-serif';
+  x.fillText('¿Me superas?' + (/^https?:/.test(location.protocol) && window.top === window ? '  ' + location.host + location.pathname.replace(/index\.html$/, '') : ''), W / 2, cy + 110);
   const url = c.toDataURL('image/png');
   const fallback = () => showModal(`<h2>Tu resultado</h2><img class="shot" src="${url}" alt="Imagen con tu resultado"><p class="sub">Mantén presionada la imagen para guardarla o compartirla.</p><button class="primary" id="closeBtn">Listo</button>`);
   if (!c.toBlob || !navigator.canShare || window.top !== window) return fallback();
@@ -3862,7 +4016,7 @@ function xPool(catKey, lenKey, hard){
 function genCross(pool, rand, o = {}){
   // Crucigrama denso: en cada paso elige, entre muchas palabras, la colocación que cruza más palabras
   // y mantiene el recuadro compacto y las direcciones parejas.
-  const MAX = o.max || 10, TARGET = o.target || 9, TRIALS = o.trials || 10, SAMPLE = o.sample || 240;
+  const MAX = o.max || 10, TARGET = o.target || 9, TRIALS = o.trials || 6, SAMPLE = o.sample || 140;
   const K = (r, c) => r + ',' + c;
   let best = null;
   for (let t = 0; t < TRIALS; t++){
@@ -4237,7 +4391,7 @@ function renderSide(){
   el.querySelectorAll('[data-sm]').forEach(b => b.onclick = () => { if (blockedInTuto()) return; modes[+b.dataset.sm][1]() });
   $('sdX').onclick = () => { if (!blockedInTuto()) startCross('daily') };
 }
-{ const loadBase = load; load = (...a) => { loadBase(...a); renderSide() } }
+{ const loadBase = load; load = (...a) => { loadBase(...a); renderSide(); drawTries(); const gm = document.querySelector('main.game'); if (gm){ gm.dataset.mode = mode; gm.classList.toggle('nokb', kb.hidden) } } }
 { const crBase = crossRender; crossRender = () => { crBase(); renderSide() } }
 { const finBase = finish; finish = w => { finBase(w); setTimeout(renderSide, 80) } }
 window.addEventListener('resize', renderSide);
@@ -4700,7 +4854,7 @@ PANE.anag = {
     anagUse(i);
   },
   help(){ if (pane.over) return; pane.cur.def = true; this.render(); toast('Pista: el significado aparece abajo') },
-  line(){ return `🔀 Anagramas · ⏱ <span id="pTime">2:00</span> · Aciertos <b id="aScore">${pane.score}</b> <button id="mlExit">Salir</button>` },
+  line(){ return `🔀 <span class="mln">Anagramas · </span>⏱ <span id="pTime">2:00</span> · <span class="mln">Aciertos </span>✓ <b id="aScore">${pane.score}</b> <button id="mlExit">Salir</button>` },
   side(){ return `<section class="sbox"><h3>Cómo jugar</h3><p class="sidep">Escribe la palabra con el teclado o haz clic en las letras revueltas. Retroceso borra la última letra. 💡 muestra el significado.</p></section><section class="sbox"><h3>Marcador</h3><div class="sstats" style="grid-template-columns:1fr 1fr"><div>${pane.score}<small>Ahora</small></div><div>${store.get('ps-anag-best', 0)}<small>Récord</small></div></div></section>` }
 };
 
@@ -4770,7 +4924,7 @@ PANE.hang = {
     this.render();
   },
   help(){ if (pane.over) return; pane.def = true; this.render(); toast('Pista: el significado aparece abajo') },
-  line(){ return `🎈 Ahorcado · ${pane.cat ? CATS[pane.cat] : 'Todos los temas'} <button id="mlExit">Salir</button>` },
+  line(){ return `🎈 <span class="mln">Ahorcado · </span>${pane.cat ? CATS[pane.cat] : 'Todos los temas'} <button id="mlExit">Salir</button>` },
   canNew(){ return true },
   next(){ startHang(pane.cat) },
   side(){ const st = store.get('ps-hang', { wins: 0, streak: 0, best: 0 }); return `<section class="sbox"><h3>Cómo jugar</h3><p class="sidep">Escribe letras con el teclado. Si la letra está, aparece en su lugar; si no, se revienta un globo. 💡 muestra el significado.</p></section><section class="sbox"><h3>Tus números</h3><div class="sstats" style="grid-template-columns:repeat(3,1fr)"><div>${st.wins}<small>Ganadas</small></div><div>${st.streak}<small>Racha</small></div><div>${st.best}<small>Mejor</small></div></div></section>` }
@@ -4888,7 +5042,13 @@ function pauseGame(){
 function placeToast(){
   const t = $('toast'); if (t.hidden) return;
   t.style.top = ''; t.style.bottom = '';
-  if (!$('modal').hidden){ t.style.top = 'calc(14px + env(safe-area-inset-top, 0px))'; return }
+  if (!$('modal').hidden){
+    const mc = $('modalCard'), c = { top: mc.offsetTop, bottom: mc.offsetTop + mc.offsetHeight }, th = t.offsetHeight + 16;
+    if (c.top >= th + 6) t.style.top = Math.max(8, c.top - th) + 'px';
+    else if (innerHeight - c.bottom >= th + 6){ t.style.top = 'auto'; t.style.bottom = (innerHeight - c.bottom - th) + 'px' }
+    else { t.style.top = 'auto'; t.style.bottom = 'calc(18px + env(safe-area-inset-bottom, 0px))' }
+    return;
+  }
   const anchor = !$('clueBar').hidden ? $('clueBar') : !kb.hidden ? kb : null;
   if (anchor){ const r = anchor.getBoundingClientRect(); t.style.top = Math.max(60, r.top - t.offsetHeight - 10) + 'px' }
   else { t.style.top = 'auto'; t.style.bottom = 'calc(22px + env(safe-area-inset-bottom, 0px))' }
@@ -4929,14 +5089,32 @@ function restoreSession(s){
 // =================== niveles, monedas y reto semanal ===================
 function xpState(){ return Object.assign({ xp: 0, coins: 0 }, store.get('ps-xp', {})) }
 function levelOf(xp){ let lv = 1, need = 100, acc = 0; while (xp >= acc + need){ acc += need; lv++; need = 100 + (lv - 1) * 50 } return { level: lv, into: xp - acc, need, pct: Math.round((xp - acc) / need * 100) } }
+let lastAward = null;
 function award(xp, coins, quiet){
-  const s = xpState(), before = levelOf(s.xp).level;
+  const s = xpState(), x0 = s.xp, before = levelOf(s.xp).level;
   s.xp += xp; s.coins += coins; store.set('ps-xp', s);
   const after = levelOf(s.xp).level;
-  if (after > before){
-    setTimeout(() => { toast(`⬆️ ¡Subiste a nivel ${after}!`); confetti() }, 1600);
-    if (after >= 5) unlock('nivel5'); if (after >= 10) unlock('nivel10');
-  } else if (!quiet && (xp || coins)) setTimeout(() => toast(`+${xp} XP${coins ? ` · +${coins} 🪙` : ''}`), 2700);
+  if (after >= 5) unlock('nivel5'); if (after >= 10) unlock('nivel10');
+  if (quiet && after === before) return;
+  // la recompensa se muestra dentro de la ventana de resultado; si no hay, como aviso
+  lastAward = { xp, coins, x0, x1: s.xp, up: after > before, level: after, t: Date.now(), shown: false };
+  const la = lastAward;
+  setTimeout(() => {
+    if (la.shown) return; la.shown = true;
+    if (la.up){ toast(`⬆️ ¡Subiste a nivel ${la.level}!`); confetti() } else toast(`+${xp} XP${coins ? ` · +${coins} 🪙` : ''}`);
+  }, 2600);
+}
+function showReward(){
+  const box = $('rwBox'), la = lastAward; if (!box) return;
+  const paint = () => {
+    if (!lastAward || lastAward.shown || Date.now() - lastAward.t > 4000) return false;
+    const a = lastAward, L0 = levelOf(a.x0), L1 = levelOf(a.x1); a.shown = true;
+    box.innerHTML = `<div class="rw"><b>+${a.xp} XP${a.coins ? ` · +${a.coins} 🪙` : ''}</b><span>${a.up ? `⬆️ ¡Subiste a nivel ${a.level}!` : `Nivel ${L1.level}`}</span></div><div class="wbar"><i style="width:${a.up ? 0 : L0.pct}%"></i></div><small>${L1.into} de ${L1.need} XP para el nivel ${L1.level + 1} · tienes ${xpState().coins} 🪙</small>`;
+    requestAnimationFrame(() => setTimeout(() => { const i = box.querySelector('.wbar i'); if (i) i.style.width = L1.pct + '%' }, 60));
+    if (a.up) confetti();
+    return true;
+  };
+  if (!paint()){ let n = 0; const iv = setInterval(() => { if (paint() || ++n > 12 || !$('rwBox')) clearInterval(iv) }, 250) }
 }
 function spend(n){ const s = xpState(); if (s.coins < n) return false; s.coins -= n; store.set('ps-xp', s); return true }
 function bump(k){ const c = store.get('ps-cnt2', {}); c[k] = (c[k] || 0) + 1; store.set('ps-cnt2', c) }
@@ -5226,7 +5404,7 @@ PANE.quiz = {
     q.cut = shuffle(q.opts.map((o, i) => o.w === q.a.w ? -1 : i).filter(i => i >= 0)).slice(0, 2);
     pane.helps++; this.render(); toast('Quitamos dos opciones incorrectas');
   },
-  line(){ return `❓ ¿Qué significa? · Pregunta ${pane.i + 1} de ${pane.qs.length} <button id="mlExit">Salir</button>` },
+  line(){ return `❓ <span class="mln">¿Qué significa? · </span>Pregunta ${pane.i + 1} de ${pane.qs.length} <button id="mlExit">Salir</button>` },
   side(){ return `<section class="sbox"><h3>Cómo jugar</h3><p class="sidep">Elige la respuesta correcta con el mouse o con las teclas 1 a 4. Enter pasa a la siguiente. 💡 quita dos opciones incorrectas.</p></section><section class="sbox"><h3>Marcador</h3><div class="sstats" style="grid-template-columns:1fr 1fr"><div>${pane.score}<small>Aciertos</small></div><div>${store.get('ps-quiz-best', 0)}<small>Récord</small></div></div></section>` }
 };
 document.addEventListener('keydown', e => { if (mode === 'quiz' && $('modal').hidden && /^[1-4]$/.test(e.key)) press(e.key) });
@@ -5312,7 +5490,7 @@ PANE.memo = {
     toast('Mira rápido… 👀');
     setTimeout(() => { if (mode !== 'memo') return; pane.lock = false; pane.open = []; this.render() }, 1600);
   },
-  line(){ return `🃏 Memorama · ⏱ <span id="pTime">${mmss(pNow())}</span> · Movimientos <b id="mMoves">${pane.moves}</b> <button id="mlExit">Salir</button>` },
+  line(){ return `🃏 <span class="mln">Memorama · </span>⏱ <span id="pTime">${mmss(pNow())}</span> · <span class="mln">Movimientos </span><span class="mls">Mov. </span><b id="mMoves">${pane.moves}</b> <button id="mlExit">Salir</button>` },
   side(){ return `<section class="sbox"><h3>Cómo jugar</h3><p class="sidep">Haz clic en dos tarjetas. Si una es la palabra y la otra su significado, se quedan descubiertas. 💡 te deja ver todas un momento.</p></section><section class="sbox"><h3>Parejas</h3><div class="sstats" style="grid-template-columns:1fr 1fr"><div>${pane.matched.length / 2}/6<small>Encontradas</small></div><div>${store.get('ps-memo-best', '—')}<small>Mejor marca</small></div></div></section>` }
 };
 
@@ -5609,64 +5787,106 @@ window.addEventListener('hashchange', () => { if (/^#(sopa|cruci)-/.test(locatio
 
 // =================== pantalla de inicio ===================
 function dailyProgress(){ return LENGTHS.map(n => { const g = store.get(`ps-daily-${todayKey()}-${n}`, null); return g && g.over ? (g.won ? 'w' : 'l') : g && g.guesses && g.guesses.length ? 'p' : '' }) }
+const ICO = {
+  daily: '<rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"/>',
+  free: '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.3" fill="currentColor"/><circle cx="15" cy="9" r="1.3" fill="currentColor"/><circle cx="9" cy="15" r="1.3" fill="currentColor"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/>',
+  cross: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/><rect x="9" y="9" width="6" height="6" fill="currentColor" stroke="none"/>',
+  soup: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/>',
+  quiz: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 1 1 3.6 2.4c-.7.3-1.1.8-1.1 1.5v.6"/><circle cx="12" cy="17" r=".9" fill="currentColor"/>',
+  memo: '<rect x="3" y="7" width="11" height="14" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/>',
+  anag: '<path d="M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4M18 4l3 3-3 3M18 14l3 3-3 3"/>',
+  hang: '<path d="M12 3a6 6 0 0 1 6 6c0 4-3.4 7-6 7s-6-3-6-7a6 6 0 0 1 6-6z"/><path d="M11 18h2M12 18c0 2-2 2-2 3.5"/>',
+  streak: '<path d="M12 3c1 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-4 2-7 2 1 3 3 3 5 1-2 1-6 1-9z"/>',
+  duo: '<rect x="2.5" y="6" width="8" height="12" rx="2"/><rect x="13.5" y="6" width="8" height="12" rx="2"/>',
+  time: '<circle cx="12" cy="13" r="8"/><path d="M12 13V9M9 2h6M12 2v3"/>',
+  cats: '<path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8" r="1.3" fill="currentColor"/>',
+  kids: '<circle cx="12" cy="12" r="9"/><path d="M8 14a4.5 4.5 0 0 0 8 0"/><circle cx="9" cy="10" r="1.1" fill="currentColor"/><circle cx="15" cy="10" r="1.1" fill="currentColor"/>',
+  reto: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+  create: '<path d="M4 20l1-5L16 4l4 4L9 19l-5 1zM14 6l4 4"/>',
+  code: '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/>',
+  pass: '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/>',
+  stats: '<path d="M5 20V11M12 20V4M19 20v-7"/>',
+  words: '<path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2V5z"/><path d="M4 20a2 2 0 0 1 2-2h13v3H6"/>',
+  cal: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  hist: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/>',
+  ach: '<circle cx="12" cy="15" r="5"/><path d="M8.5 11L6 3h4l2 5 2-5h4l-2.5 8"/>',
+  backup: '<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+  tuto: '<circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/>',
+  news: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/>',
+  fb: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'
+};
+const ICO_COL = { daily: '#2f8a5c', free: '#3b82c4', cross: '#d98a12', soup: '#1f9aa0', quiz: '#8a5cd6', memo: '#c4467a', anag: '#c0582f', hang: '#d64545', streak: '#e0742a', duo: '#3b82c4', time: '#5f8f2a', cats: '#a0662a', kids: '#e0a106', reto: '#2f8a5c', create: '#8a5cd6', code: '#d98a12', pass: '#1f9aa0', stats: '#3b82c4', words: '#5f8f2a', cal: '#c4467a', hist: '#8a5cd6', ach: '#d98a12', backup: '#1f9aa0', help: '#3b82c4', tuto: '#2f8a5c', news: '#e0a106', fb: '#c0582f' };
+const ico = k => `<span class="hi" style="--c:${ICO_COL[k] || '#888'}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k] || ''}</svg></span>`;
+const GAME_KEYS = ['free', 'cross', 'soup', 'quiz', 'memo', 'anag', 'hang', 'streak', 'duo', 'time', 'cats', 'kids'];
 function homeHTML(){
   const xp = xpState(), lv = levelOf(xp.xp), dp = dailyProgress(), doneN = dp.filter(x => x === 'w' || x === 'l').length;
   const xd = store.get('ps-cross-' + todayKey(), null), sd = store.get('ps-sopa-' + todayKey(), null);
   const days = playedDays(); let cur = 0; const dd = new Date(); if (!days[dayKey(dd)]) dd.setDate(dd.getDate() - 1); while (days[dayKey(dd)]){ cur++; dd.setDate(dd.getDate() - 1) }
   const gs = weekGoals(), ws = weekState(), ti = todayIdx();
-  const card = (go, ic, t, d) => `<button class="hcard" data-go="${go}"><span class="hi">${ic}</span><b>${t}</b><small>${d}</small></button>`;
+  const t = k => { const v = store.get(k, null); return v ? mmss(v) : null };
+  const fs = Object.assign({ played: 0 }, store.get('ps-st2-free', {})), hang = store.get('ps-hang', { wins: 0 }), alb = Object.keys(store.get('ps-kids-album', {})).length;
+  const tb = Math.max(...LENGTHS.map(n => store.get('ps-time-best-' + n, 0)));
+  const INFO = {
+    free: ['Palabra libre', fs.played ? `${fs.played} jugadas` : 'Todas las que quieras'],
+    cross: ['Crucigrama', t('ps-cross-best') ? `Récord ${t('ps-cross-best')}` : 'Pistas con significado'],
+    soup: ['Sopa de letras', t('ps-sopa-best') ? `Récord ${t('ps-sopa-best')}` : 'Encuentra palabras'],
+    quiz: ['¿Qué significa?', store.get('ps-quiz-best', 0) ? `Mejor: ${store.get('ps-quiz-best', 0)} de 10` : 'Quiz de definiciones'],
+    memo: ['Memorama', store.get('ps-memo-best', null) ? `Mejor: ${store.get('ps-memo-best')} movimientos` : 'Palabra y significado'],
+    anag: ['Anagramas', store.get('ps-anag-best', 0) ? `Récord: ${store.get('ps-anag-best', 0)}` : 'Ordena letras'],
+    hang: ['Ahorcado', hang.wins ? `${hang.wins} ganados` : 'Sin reventar globos'],
+    streak: ['Racha infinita', store.get('ps-streak-best', 0) ? `Récord: ${store.get('ps-streak-best', 0)} seguidas` : '¿Cuántas seguidas?'],
+    duo: ['Doble palabra', 'Dos a la vez'],
+    time: ['Contrarreloj', tb ? `Récord: ${tb} aciertos` : '3 minutos'],
+    cats: ['Categorías', `${Object.keys(CATS).length} temas`],
+    kids: ['Modo niños', alb ? `Álbum ${alb} de ${KIDS.length}` : 'Con dibujos']
+  };
+  const card = (go, ttl, d) => `<button class="hcard" data-go="${go}">${ico(go)}<span class="ht"><b>${ttl}</b><small>${d}</small></span></button>`;
+  const gcard = k => card(k, INFO[k][0], INFO[k][1]);
+  const use = store.get('ps-usage', {}), favs = GAME_KEYS.filter(k => (use[k] || 0) >= 2).sort((a, b) => use[b] - use[a]).slice(0, 4);
+  const fold = store.get('ps-hfold', {});
+  const sec = (id, title, body) => `<details class="hsec hfold" data-fold="${id}" ${(fold[id] === undefined ? id === 'amigos' : fold[id]) ? 'open' : ''}><summary><h3>${title}<i class="chev" aria-hidden="true"></i></h3></summary>${body}</details>`;
+  const h = new Date().getHours(), saludo = h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches';
   const fecha = new Date().toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long' });
   const weekend = [0, 6].includes(new Date().getDay());
   return `<div class="homev">
     <div class="hello">
-      <div><b>¡Hola${settings.name ? ', ' + esc(settings.name) : ''}! ${settings.avatar || ''}</b><small>${fecha[0].toUpperCase() + fecha.slice(1)}${cur ? ` · 🔥 ${cur} ${cur === 1 ? 'día' : 'días'} seguidos` : ''}</small></div>
+      <div><b>${saludo}${settings.name ? ', ' + esc(settings.name) : ''} ${settings.avatar || ''}</b><small>${fecha[0].toUpperCase() + fecha.slice(1)}${cur ? ` · 🔥 ${cur} ${cur === 1 ? 'día' : 'días'} seguidos` : ''}</small></div>
       <button class="lvl" data-go="stats" aria-label="Nivel ${lv.level}, ${xp.coins} monedas"><b>Nivel ${lv.level}</b><span class="wbar"><i style="width:${lv.pct}%"></i></span><small>🪙 ${xp.coins}</small></button>
     </div>
     ${backupDue() ? '<div class="bkbanner"><span>💾 Guarda un respaldo para no perder tu progreso</span><button data-go="backup">Hacerlo</button><button data-go="bksnooze" aria-label="Recordar después">✕</button></div>' : ''}
     <section class="hsec"><h3>Hoy</h3>
-      <button class="hday" data-go="daily"><span class="hi">🟩</span><div><b>Palabras del día</b><small>${doneN === 5 ? '¡Completaste las 5!' : `${doneN} de 5 jugadas`}</small><div class="hdots">${LENGTHS.map((n, i) => `<i class="${dp[i]}">${n}</i>`).join('')}</div></div><em>${doneN === 5 ? 'Ver' : 'Jugar'}</em></button>
+      <button class="hday" data-go="daily">${ico('daily')}<div><b>Palabras del día</b><small>${doneN === 5 ? '¡Completaste las 5!' : `${doneN} de 5 jugadas`}</small><div class="hdots">${LENGTHS.map((n, i) => `<i class="${dp[i]}">${n}</i>`).join('')}</div></div><em>${doneN === 5 ? 'Ver' : doneN ? 'Seguir' : 'Jugar'}</em></button>
       <div class="hrow2">
-        <button class="hmini" data-go="xdaily"><span class="hi">🧩</span><b>Crucigrama${weekend ? ' gigante' : ''}</b><small>${xd && xd.done ? 'Resuelto en ' + mmss(xd.elapsed) + ' ✓' : xd ? 'Continuar' : 'Del día'}</small></button>
-        <button class="hmini" data-go="sdaily"><span class="hi">🔎</span><b>Sopa de letras</b><small>${sd && sd.done ? 'Resuelta en ' + mmss(sd.elapsed) + ' ✓' : sd ? 'Continuar' : 'Del día'}</small></button>
+        <button class="hmini" data-go="xdaily">${ico('cross')}<span class="ht"><b>Crucigrama${weekend ? ' gigante' : ''}</b><small>${xd && xd.done ? 'Resuelto en ' + mmss(xd.elapsed) + ' ✓' : xd ? 'Continuar' : 'Del día'}</small></span></button>
+        <button class="hmini" data-go="sdaily">${ico('soup')}<span class="ht"><b>Sopa de letras</b><small>${sd && sd.done ? 'Resuelta en ' + mmss(sd.elapsed) + ' ✓' : sd ? 'Continuar' : 'Del día'}</small></span></button>
       </div>
     </section>
     <section class="hsec"><h3>Reto semanal <button class="hlink" data-go="weekly">Ver todo</button></h3>
-      <button class="hweek" data-go="weekly"><span class="wdays">${['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((l, i) => `<i class="${ws.done[i] ? 'ok' : i < ti ? 'miss' : i === ti ? 'today' : ''}">${ws.done[i] ? '✓' : l}</i>`).join('')}</span><span class="wgoal">${ws.done[ti] ? '✅ Reto de hoy cumplido. ¡Vuelve mañana!' : '🎯 Hoy: ' + gs[ti].t}</span></button>
+      <button class="hweek" data-go="weekly"><span class="wdays">${['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((l, i) => `<i class="${ws.done[i] ? 'ok' : i < ti ? 'miss' : i === ti ? 'today' : ''}">${ws.done[i] ? '✓' : l}</i>`).join('')}</span><span class="wgoal">${ws.done[ti] ? '✅ ¡Cumpliste el de hoy!' : '🎯 Hoy: ' + gs[ti].t}</span></button>
     </section>
-    <section class="hsec"><h3>Juegos</h3><div class="hgrid">
-      ${card('free', '🎲', 'Palabra libre', 'Todas las que quieras')}
-      ${card('cross', '🧩', 'Crucigrama', 'Pistas con significado')}
-      ${card('soup', '🔎', 'Sopa de letras', 'Encuentra palabras')}
-      ${card('quiz', '❓', '¿Qué significa?', 'Quiz de definiciones')}
-      ${card('memo', '🃏', 'Memorama', 'Palabra y significado')}
-      ${card('anag', '🔀', 'Anagramas', 'Ordena letras')}
-      ${card('hang', '🎈', 'Ahorcado', 'Sin reventar globos')}
-      ${card('streak', '🔥', 'Racha infinita', '¿Cuántas seguidas?')}
-      ${card('duo', '👯', 'Doble palabra', 'Dos a la vez')}
-      ${card('time', '⏱️', 'Contrarreloj', '3 minutos')}
-      ${card('cats', '🏷️', 'Categorías', 'Por tema')}
-      ${card('kids', '🧸', 'Modo niños', 'Con dibujos')}
-    </div></section>
-    <section class="hsec"><h3>Con amigos</h3><div class="hgrid">
-      ${card('reto', '🤝', 'Retar a un amigo', 'Tu palabra secreta')}
-      ${card('create', '✏️', 'Crea un juego', 'Sopa o crucigrama')}
-      ${card('code', '🔑', 'Tengo un código', 'Juega lo que te mandaron')}
-      ${card('pass', '📱', 'Pasa el teléfono', 'Duelo de 2')}
-    </div></section>
-    <section class="hsec"><h3>Tu progreso</h3><div class="hgrid">
-      ${card('stats', '📊', 'Estadísticas', 'Todos tus números')}
-      ${card('words', '📖', 'Mis palabras', Object.keys(store.get('ps-learned', {})).length + ' descubiertas')}
-      ${card('cal', '📅', 'Calendario', 'Tus días jugados')}
-      ${card('hist', '🗓️', 'Historial', 'Días anteriores')}
-      ${card('ach', '🏅', 'Logros', Object.keys(store.get('ps-ach', {})).length + ' de ' + ACH.length)}
-      ${card('backup', '💾', 'Respaldo', 'Cambiar de teléfono')}
-    </div></section>
-    <section class="hsec"><h3>Ayuda</h3><div class="hgrid">
-      ${card('help', '📘', 'Cómo jugar', 'Reglas paso a paso')}
-      ${card('tuto', '🎓', 'Práctica', 'La partida guiada')}
-      ${card('news', '✨', 'Novedades', 'Lo nuevo')}
-      ${card('fb', '✉️', 'Comentarios', 'Reporta o sugiere')}
-    </div></section>
+    ${favs.length ? `<section class="hsec"><h3>Tus favoritos</h3><div class="hgrid">${favs.map(gcard).join('')}</div></section>` : ''}
+    <section class="hsec"><h3>${favs.length ? 'Todos los juegos' : 'Juegos'}</h3><div class="hgrid">${GAME_KEYS.filter(k => !favs.includes(k)).map(gcard).join('')}</div></section>
+    ${sec('amigos', 'Con amigos', `<div class="hgrid">
+      ${card('reto', 'Retar a un amigo', 'Tu palabra secreta')}
+      ${card('create', 'Crea un juego', 'Sopa o crucigrama')}
+      ${card('code', 'Tengo un código', 'Juega lo que te mandaron')}
+      ${card('pass', 'Pasa el teléfono', 'Duelo de 2')}
+    </div>`)}
+    ${sec('progreso', 'Tu progreso', `<div class="hgrid">
+      ${card('stats', 'Estadísticas', 'Todos tus números')}
+      ${card('words', 'Mis palabras', Object.keys(store.get('ps-learned', {})).length + ' descubiertas')}
+      ${card('cal', 'Calendario', Object.keys(playedDays()).length + ' días jugados')}
+      ${card('hist', 'Historial', 'Días anteriores')}
+      ${card('ach', 'Logros', Object.keys(store.get('ps-ach', {})).length + ' de ' + ACH.length)}
+      ${card('backup', 'Respaldo', store.get('ps-lastbackup', null) ? 'Último: ' + store.get('ps-lastbackup').split('-').reverse().slice(0, 2).join('/') : 'Cambiar de teléfono')}
+    </div>`)}
+    ${sec('ayuda', 'Ayuda', `<div class="hgrid">
+      ${card('help', 'Cómo jugar', 'Reglas paso a paso')}
+      ${card('tuto', 'Práctica', 'La partida guiada')}
+      ${card('news', 'Novedades', 'Lo nuevo')}
+      ${card('fb', 'Comentarios', 'Reporta o sugiere')}
+    </div>`)}
   </div>`;
 }
 function miniCal(){
@@ -5704,7 +5924,12 @@ function goHome(){
 PANE.home = {
   build(){
     $('pane').innerHTML = homeHTML();
-    $('pane').querySelectorAll('[data-go]').forEach(b => b.onclick = e => { e.stopPropagation(); const f = HOME_GO[b.dataset.go]; if (f) f() });
+    $('pane').querySelectorAll('[data-go]').forEach(b => b.onclick = e => {
+      e.stopPropagation(); const k = b.dataset.go, f = HOME_GO[k];
+      if (GAME_KEYS.includes(k)){ const u = store.get('ps-usage', {}); u[k] = (u[k] || 0) + 1; store.set('ps-usage', u) }
+      if (f) f();
+    });
+    $('pane').querySelectorAll('[data-fold]').forEach(d => d.ontoggle = () => { const f = store.get('ps-hfold', {}); f[d.dataset.fold] = d.open; store.set('ps-hfold', f) });
   },
   size(){}, render(){ resetVisuals(); $('hintLine').hidden = true },
   press(k){ if (k === 'Enter') HOME_GO.daily() },
@@ -5733,6 +5958,26 @@ $('menuBtn').onclick = () => { if (blockedInTuto()) return; if (mode === 'home')
 { const b = hangEnd; hangEnd = w => { b(w); emit('hang', { won: w, miss: pane.miss }) } }
 { const b = streakAfter; streakAfter = w => { b(w); if (w) emit('streak', { count: store.get('ps-streak-run', { count: 0 }).count }) } }
 
+// si la app se queda abierta y cambia el día, refresca el inicio o la palabra del día
+{ let dayNow = todayKey();
+  const check = () => { if (document.hidden || todayKey() === dayNow) return; dayNow = todayKey();
+    if (!$('modal').hidden) return;
+    if (mode === 'home') PANE.home.build(); else if (mode === 'daily') load();
+    renderSide();
+  };
+  document.addEventListener('visibilitychange', check); setInterval(check, 60000);
+}
+// botón «atrás» del teléfono: cierra la ventana abierta o regresa al inicio en lugar de salir de la app
+if (window.top === window && history.pushState){
+  let exitHint = 0;
+  const arm = () => { try{ history.pushState({ ps: 1 }, '') }catch(e){} };
+  arm();
+  window.addEventListener('popstate', () => {
+    if (!$('modal').hidden){ if (!modalLocked) closeModal(); arm(); return }
+    if (mode !== 'home' && mode !== 'tuto'){ arm(); confirmLeave(); return }
+    if (Date.now() - exitHint > 2500){ exitHint = Date.now(); arm(); toast('Presiona «atrás» otra vez para salir') }
+  });
+}
 applySettings();
 try{ if (navigator.storage && navigator.storage.persist) navigator.storage.persist() }catch(e){}
 if (!store.get('ps-tuto', false)) startTuto(false);
